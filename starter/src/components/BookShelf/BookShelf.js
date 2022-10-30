@@ -1,12 +1,10 @@
 import Book from "../Book/Book";
 
 const BookShelf = (props) => {
-  const { title, books, shelf } = props;
+  const { title, books, shelf, updateShelf } = props;
 
   const filteredBooks = books.filter((book) => book.shelf === shelf);
-  {
-    console.log(books);
-  }
+
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
@@ -22,6 +20,8 @@ const BookShelf = (props) => {
                 }
                 key={book.id}
                 currentShelf={shelf}
+                onUpdateShelf={updateShelf}
+                bookData={book}
               />
             </li>
           ))}

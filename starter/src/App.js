@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import SearchBooks from "./components/SearchBooks/SearchBooks";
 import NavBar from "./components/NavBar/NavBar";
 import BookShelf from "./components/BookShelf/BookShelf";
-import { getAll, search } from "./BooksAPI";
+import { getAll, search, update } from "./BooksAPI";
 import SearchButton from "./components/SearchButton/SearchButton";
 
 function App() {
@@ -12,12 +12,8 @@ function App() {
   const [query, setQuery] = useState("");
   const [searchedBooks, setSearchedBooks] = useState([]);
 
-  const closeSearchBooksPage = () => {
-    setShowSearchpage(false);
-  };
-
-  const openSearchBookPage = () => {
-    setShowSearchpage(true);
+  const toggleSearchBooksPage = () => {
+    setShowSearchpage(!showSearchPage);
   };
 
   const searchQuery = (searchTerm) => {
@@ -43,16 +39,39 @@ function App() {
     });
   }, [query]);
 
-  {
-    console.log(searchedBooks);
-  }
+  const updateShelf = (book, shelf) => {
+    update(book, shelf).then(() => {
+      const updatedBooksArray = [...books];
+
+      const duplicateBookIndex = updatedBooksArray.findIndex(
+        (newBook) => newBook.id === book.id
+      );
+      duplicateBookIndex !== -1 &&
+        updatedBooksArray.splice(duplicateBookIndex, 1);
+
+      //adding all book attr + new shelf to a new obj then, pushing into the array.
+      shelf !== "none" && updatedBooksArray.push({ ...book, shelf: shelf });
+
+      setBooks(updatedBooksArray);
+
+      setSearchedBooks(
+        Array.isArray(searchedBooks) &&
+          searchedBooks.map((searchedBook) => {
+            searchedBook.id === book.id && (searchedBook.shelf = shelf);
+            return searchedBook;
+          })
+      );
+    });
+  };
+
   return (
     <div className="app">
       {showSearchPage ? (
         <SearchBooks
-          onClose={closeSearchBooksPage}
+          onClose={toggleSearchBooksPage}
           searchedBooks={searchedBooks}
           onSearchQuery={searchQuery}
+          updateShelf={updateShelf}
         />
       ) : (
         <div className="list-books">
@@ -63,16 +82,23 @@ function App() {
                 title={"Currently Reading"}
                 books={books}
                 shelf={"currentlyReading"}
+                updateShelf={updateShelf}
               />
               <BookShelf
                 title={"Want To Read"}
                 books={books}
                 shelf={"wantToRead"}
+                updateShelf={updateShelf}
               />
-              <BookShelf title={"Read"} books={books} shelf={"read"} />
+              <BookShelf
+                title={"Read"}
+                books={books}
+                shelf={"read"}
+                updateShelf={updateShelf}
+              />
             </div>
           </div>
-          <SearchButton onOpen={openSearchBookPage} />
+          <SearchButton onOpen={toggleSearchBooksPage} />
         </div>
       )}
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Book from "../Book/Book";
 
 const SearchBooks = (props) => {
-  const { onClose, searchedBooks, onSearchQuery } = props;
+  const { onClose, searchedBooks, onSearchQuery, updateShelf } = props;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isValidSearch, setValidSearch] = useState(false);
@@ -51,14 +51,16 @@ const SearchBooks = (props) => {
                 return (
                   <li>
                     <Book
-                      bookTitle={book.title || ""}
-                      bookAuthor={book.authors || ""}
+                      bookTitle={book.title}
+                      bookAuthor={book.authors}
                       thumbnail={
                         book.imageLinks.smallThumbnail ||
                         book.imageLinks.thumbnail
                       }
                       key={book.id}
                       currentShelf={book.shelf}
+                      onUpdateShelf={updateShelf}
+                      bookData={book}
                     />
                   </li>
                 );
