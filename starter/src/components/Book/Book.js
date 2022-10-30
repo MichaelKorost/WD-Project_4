@@ -1,7 +1,12 @@
 const Book = (props) => {
   const { bookTitle, bookAuthor, thumbnail, currentShelf } = props;
 
-  const bookAuthorString = bookAuthor.join(", ");
+  const authors = (bookAuthor || []).map((a) =>
+    a === undefined ? "unknown author" : a
+  );
+
+  const bookAuthorString = authors.join(", ");
+
   return (
     <li>
       <div className="book">
@@ -15,8 +20,8 @@ const Book = (props) => {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select value={currentShelf} onChange={""}>
-              <option value="none" disabled>
+            <select value={currentShelf}>
+              <option value="-none-" disabled>
                 Move to...
               </option>
               <option value="currentlyReading">Currently Reading</option>
