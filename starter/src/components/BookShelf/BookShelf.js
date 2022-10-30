@@ -16,7 +16,8 @@ const BookShelf = (props) => {
                 bookTitle={book.title}
                 bookAuthor={book.authors}
                 thumbnail={
-                  book.imageLinks.smallThumbnail || book.imageLinks.thumbnail
+                  book.imageLinks?.smallThumbnail ||
+                  "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
                 }
                 key={book.id}
                 currentShelf={shelf}
