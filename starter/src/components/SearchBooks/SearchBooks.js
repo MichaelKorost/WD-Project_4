@@ -49,20 +49,18 @@ const SearchBooks = (props) => {
           {isValidSearch && Array.isArray(searchedBooks)
             ? searchedBooks.map((book) => {
                 return (
-                  <li>
-                    <Book
-                      bookTitle={book.title}
-                      bookAuthor={book.authors}
-                      thumbnail={
-                        book.imageLinks?.thumbnail ||
-                        "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
-                      }
-                      key={book.id}
-                      currentShelf={book.shelf}
-                      onUpdateShelf={updateShelf}
-                      bookData={book}
-                    />
-                  </li>
+                  <Book
+                    bookTitle={book.title}
+                    bookAuthor={book.authors}
+                    thumbnail={
+                      book.imageLinks?.thumbnail ||
+                      "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
+                    }
+                    key={book.id}
+                    currentShelf={book.shelf}
+                    onUpdateShelf={updateShelf}
+                    bookData={book}
+                  />
                 );
               })
             : null}

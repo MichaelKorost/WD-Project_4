@@ -27,6 +27,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (query === "") {
+      setQuery("");
+      return;
+    }
     search(query).then((result) => {
       setSearchedBooks(
         Array.isArray(result) &&
