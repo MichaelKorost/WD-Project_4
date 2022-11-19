@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/WD-Project_4/static/css/main.1f474b55.chunk.css",
+    "main.js": "/WD-Project_4/static/js/main.cb293225.chunk.js",
+    "main.js.map": "/WD-Project_4/static/js/main.cb293225.chunk.js.map",
+    "runtime-main.js": "/WD-Project_4/static/js/runtime-main.94aabe1e.js",
+    "runtime-main.js.map": "/WD-Project_4/static/js/runtime-main.94aabe1e.js.map",
+    "static/js/2.9cd7e049.chunk.js": "/WD-Project_4/static/js/2.9cd7e049.chunk.js",
+    "static/js/2.9cd7e049.chunk.js.map": "/WD-Project_4/static/js/2.9cd7e049.chunk.js.map",
+    "index.html": "/WD-Project_4/index.html",
+    "static/css/main.1f474b55.chunk.css.map": "/WD-Project_4/static/css/main.1f474b55.chunk.css.map",
+    "static/js/2.9cd7e049.chunk.js.LICENSE.txt": "/WD-Project_4/static/js/2.9cd7e049.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/WD-Project_4/static/media/arrow-drop-down.98ef3b31.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.94aabe1e.js",
+    "static/js/2.9cd7e049.chunk.js",
+    "static/css/main.1f474b55.chunk.css",
+    "static/js/main.cb293225.chunk.js"
+  ]
+}
