@@ -1,9 +1,9 @@
 import Book from "../Book/Book";
 
-const BookShelf = (props) => {
-  const { title, books, shelf, updateShelf } = props;
+const BookShelf = ({ title, books, shelf, updateShelf }) => {
+  const filteredBooks = books.filter((book) => book.shelf === shelf); //is slow
 
-  const filteredBooks = books.filter((book) => book.shelf === shelf);
+  console.log(filteredBooks[0]);
 
   return (
     <div className="bookshelf">

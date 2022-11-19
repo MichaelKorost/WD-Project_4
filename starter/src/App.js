@@ -11,6 +11,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [query, setQuery] = useState("");
   const [searchedBooks, setSearchedBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
 
   const toggleSearchBooksPage = () => {
     setShowSearchpage(!showSearchPage);
@@ -20,9 +21,19 @@ function App() {
     setQuery(searchTerm);
   };
 
+  const filterBooksByShelf = (books) => {
+    setFilteredBooks(
+      books.map((book) => {
+        //create a json each array has shelf title
+        //create string thats resembles JSON which then can be parsed JSON.parse(string)
+      })
+    );
+  };
+
   useEffect(() => {
     getAll().then((data) => {
       setBooks(data);
+      books.map((book) => {});
     });
   }, []);
 
@@ -67,6 +78,27 @@ function App() {
       );
     });
   };
+
+  // {[
+  //   {
+  //     title: "Currently",
+  //     books: books,
+  //     shelf: currentlyReading,
+  //     updateShelf: updateShelf,
+  //   },
+  //   {
+  //     title: "Currently",
+  //     books: books,
+  //     shelf: currentlyReading,
+  //     updateShelf: updateShelf,
+  //   },
+  //   {
+  //     title: "Currently",
+  //     books: books,
+  //     shelf: currentlyReading,
+  //     updateShelf: updateShelf,
+  //   },
+  // ]}
 
   return (
     <div className="app">
